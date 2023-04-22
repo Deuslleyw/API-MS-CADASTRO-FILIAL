@@ -12,25 +12,49 @@
 	<artifactId>API-MS-CADASTRO-FILIAL</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>API-MS-CADASTRO-FILIAL</name>
-	<description>    Realiza o Cadastro de Filiais</description>
+	<description> Realiza o Cadastro de Filiais</description>
 	<properties>
 		<java.version>17</java.version>
+
 	</properties>
 	<dependencies>
-		<dependency>
+		<!--dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>2.2.8</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
+		</dependency>
+
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
@@ -51,6 +75,7 @@
 
 	<build>
 		<plugins>
+
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -63,35 +88,39 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
 			<plugin>
-				<groupId>io.swagger</groupId>
+				<groupId>io.swagger.codegen.v3</groupId>
 				<artifactId>swagger-codegen-maven-plugin</artifactId>
-				<version>2.4.9</version>
+				<version>3.0.36</version>
 				<executions>
 					<execution>
-						<id>generate-provider-service-interface</id>
+						<id>api-cadastro-filial</id>
 						<phase>generate-resources</phase>
 						<goals>
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>src/main/resources/swagger/API-MS-CADASTRO-FILIAL.yaml</inputSpec>
 							<language>spring</language>
 							<library>spring-boot</library>
-							<modelPackage>com.deusley.api.deusley.provider.model</modelPackage>
-							<apiPackage>com.deusley.api.deusley.provider.api</apiPackage>
+							<inputSpec>${project.basedir}/src/main/resources/swagger/cadastro-swagger.yml</inputSpec>
+							<modelPackage>${project.groupId}.provider.model</modelPackage>
+							<apiPackage>${project.groupId}.provider.api</apiPackage>
+
 							<configOptions>
 								<delegatePattern>true</delegatePattern>
 								<interfaceOnly>true</interfaceOnly>
 								<dateLibrary>java8</dateLibrary>
 							</configOptions>
-							<modelNameSuffix>Model</modelNameSuffix>
+
+							<modelNameSuffix>VO</modelNameSuffix>
 							<generateSupportingFiles>false</generateSupportingFiles>
 							<generateApiTests>false</generateApiTests>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
+
 
 		</plugins>
 	</build>
