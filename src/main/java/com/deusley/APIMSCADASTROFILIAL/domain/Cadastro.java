@@ -1,18 +1,18 @@
 package com.deusley.APIMSCADASTROFILIAL.domain;
 
+import com.deusley.APIMSCADASTROFILIAL.dto.GestorDTO;
 import lombok.*;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+import java.util.ArrayList;
+import java.util.List;
+
 @ToString
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@Table(name = "TB_CADASTROS")
+@Document
 public class Cadastro {
 
     @Id
@@ -21,4 +21,12 @@ public class Cadastro {
     private String cnpj;
     private String matriculaGestor;
 
+    private List<GestorDTO> gestores = new ArrayList<>();
+
+    public Cadastro(String id, String nome, String cnpj, String matriculaGestor) {
+        this.id = id;
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.matriculaGestor = matriculaGestor;
+    }
 }
