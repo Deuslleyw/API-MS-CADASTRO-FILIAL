@@ -4,6 +4,7 @@ import com.deusley.APIMSCADASTROFILIAL.dto.GestorDTO;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 @Document
 public class Cadastro {
 
-    @Id
+    @MongoId
     private String id;
     private String nome;
     private String cnpj;

@@ -6,9 +6,11 @@ import com.deusley.APIMSCADASTROFILIAL.repository.CadastroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.util.List;
 
+@Profile(value = "test")
 @Configuration
 public class InstantiationDBTest implements CommandLineRunner {
 
@@ -22,9 +24,9 @@ public class InstantiationDBTest implements CommandLineRunner {
 
         cadRep.deleteAll();
 
-        Cadastro cad1 = new Cadastro("0001", "Dowglas", "29474994000201","007710");
-        Cadastro cad2 = new Cadastro("0002", "Diego", "29474994000202","007711");
-        Cadastro cad3 = new Cadastro("0003", "joaquim", "29474994000203","007712");
+        Cadastro cad1 = new Cadastro("002", "Dowglas", "29474994000201","007710");
+        Cadastro cad2 = new Cadastro("007", "Diego", "29474994000202","007711");
+        Cadastro cad3 = new Cadastro("0555", "joaquim", "29474994000203","007712");
 
         cadRep.saveAll(List.of(cad1, cad2, cad3));
 

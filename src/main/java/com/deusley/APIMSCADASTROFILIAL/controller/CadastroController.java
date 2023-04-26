@@ -5,15 +5,16 @@ import com.deusley.provider.model.CrateFilialRequestVO;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import java.net.URI;
 
-@RequestMapping("/api/v1/filiais")
+@RequestMapping(value = "/api/v1/filiais")
 @RestController
 @RequiredArgsConstructor
 public class CadastroController {
+
+    public static final String ID = "/{id}";
 
     @Autowired
     private CadastroService cadastroService;
@@ -24,9 +25,6 @@ public class CadastroController {
     @PostMapping
     public ResponseEntity<CrateFilialRequestVO> cadastro(@RequestBody CrateFilialRequestVO obj) {
         var serv = cadastroService.create(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand().toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.status(HttpStatus.CREATED).build();
 }
-
-
 }
