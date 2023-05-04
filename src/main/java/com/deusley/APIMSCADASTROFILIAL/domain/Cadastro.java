@@ -4,6 +4,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.OffsetDateTime;
 
 @Builder
 @ToString
@@ -20,6 +21,7 @@ public class Cadastro {
     private String nome;
     private String cnpj;
     private String matriculaGestor;
+    private OffsetDateTime dataCriacao;
+    private OffsetDateTime dataAtualizacao;
 
     }
-

@@ -1,6 +1,7 @@
 package com.deusley.APIMSCADASTROFILIAL.controller;
 
 
+import com.deusley.APIMSCADASTROFILIAL.integration.Employee;
 import com.deusley.APIMSCADASTROFILIAL.mapper.RequestCadastroMapper;
 import com.deusley.APIMSCADASTROFILIAL.service.CadastroService;
 import com.deusley.provider.api.FiliaisApi;
@@ -24,6 +25,9 @@ public class CadastroController implements FiliaisApi {
     @Autowired
     private CadastroService cadastroService;
 
+    @Autowired
+    private Employee integration;
+
     @Override
     public ResponseEntity<Void> create(CrateFilialRequestVO body) {
         var mapperCad = RequestCadastroMapper.toCadastro(body);
@@ -36,11 +40,11 @@ public class CadastroController implements FiliaisApi {
 
     @Override
     public ResponseEntity<GetFilialResponseVO> getById(String id){
+
         var cadastro = cadastroService.findById(id);
+        var employee = integration.findBy(cadastro.getMatriculaGestor());
+        var mapperResponse = RequestCadastroMapper.fromFilial(cadastro, employee);
 
-
-
-        return ResponseEntity.status(HttpStatus.OK).body(null);
+        return ResponseEntity.status(HttpStatus.OK).body(mapperResponse);
     }
-
 }

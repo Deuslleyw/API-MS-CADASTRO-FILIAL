@@ -19,13 +19,13 @@ public class InstantiationDBTest implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        cadRep.deleteAll();
+       // cadRep.deleteAll();
 
-        Cadastro cad1 = new Cadastro("002", "Dowglas", "29474994000201","007710");
-        Cadastro cad2 = new Cadastro("007", "Diego", "29474994000202","007711");
-        Cadastro cad3 = new Cadastro("0555", "joaquim", "29474994000203","007712");
+       // Cadastro cad1 = new Cadastro("002", "Dowglas", "29474994000201","007710");
+       // Cadastro cad2 = new Cadastro("007", "Diego", "29474994000202","007711");
+       // Cadastro cad3 = new Cadastro("0555", "joaquim", "29474994000203","007712");
 
-        cadRep.saveAll(List.of(cad1, cad2, cad3));
+       // cadRep.saveAll(List.of(cad1, cad2, cad3));
 
     }
 }
