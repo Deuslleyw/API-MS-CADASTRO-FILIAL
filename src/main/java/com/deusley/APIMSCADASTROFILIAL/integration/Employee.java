@@ -12,8 +12,6 @@ import java.util.List;
 @Component
 public class Employee {
 
-    private final String URL = "http://maia.us-east-2.elasticbeanstalk.com/api/v1/employees/";
-
     Gson gson = new Gson();
 
     @Autowired
@@ -26,6 +24,7 @@ public class Employee {
             httpHeaders.setAccept(List.of(MediaType.APPLICATION_JSON));
 
             HttpEntity<String> entity = new HttpEntity<>(httpHeaders);
+            String URL = "http://maia.us-east-2.elasticbeanstalk.com/api/v1/employees/";
             ResponseEntity<String> responseEntity = rest.exchange(URL.concat(id), HttpMethod.GET, entity, String.class);
 
             return gson.fromJson(responseEntity.getBody(), GetEmployeeResponseVOc.class);
